@@ -1,0 +1,41 @@
+
+
+<div
+
+class="card"
+>
+<div class="text-right mr-2 mt-2">
+
+<i [routerLink]="['/back/stock']" class="fas fa-backspace mb-2 mx-auto" style="font-size: 2rem;cursor: pointer;color:#A9A9A9;"></i>
+
+</div>
+<div style="margin-top: -1.5rem;" class="card-body">
+  <h3 style="font-weight: 700">{{ rayon.libelle | uppercase }}</h3>
+  <h6 style="font-weight: 600">Code : {{ rayon.code }}</h6>
+</div>
+</div>
+<div style="background-color: white" class="row m-1">
+<div
+  class="col-12 col-sm-6 col-lg-4 col-xl-3 detailCard"
+  *ngFor="let item of rayon.produitList; let i = index"
+>
+  <div class="card">
+    <img
+      src="../../../../assets/images/p4.jpg"
+      class="card-img-top"
+      alt="..."
+    />
+    <div class="card-body">
+      <h5 style="font-weight: 700" class="card-title">
+        {{ item.libelle | uppercase }}
+      </h5>
+      <h6 style="font-weight: 500" class="card-text">
+        &nbsp;code : {{ item.code }}
+      </h6>
+      <h6 style="font-weight: 500" class="card-text">
+        &nbsp;Prix unitaire : {{ item.prixUnitaire }}
+      </h6>
+    </div>
+  </div>
+</div>
+</div>

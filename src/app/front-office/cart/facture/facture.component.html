@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register">
+                <div class="tab-container">
+                    <div class="tab-content clearfix" id="tab-register">
+                        <div class="panel panel-default nobottommargin">
+                            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442; Rechercher">
+                            <div class="panel-body">
+                                <h1>Commande(s)</h1>
+                                <table class="table table-hover" border="1" style="width:100% ;" >
+                                    <tr>
+                                        <th>ID Commande</th>
+                                        <th style="width: 150px">Date Commande</th>
+                                        <th style="width: 150px">Montant Commande</th>
+                                        <th>Mes lignes de commande</th>
+                                    </tr>
+
+                                   
+                                       <tr class="aaa" *ngFor="let facture of listfacture | filter:searchText" >
+                                            <td>{{ facture.idFacture }}</td>
+                                            <td>{{ facture.dateFacture }}</td>
+                                            <td>{{ facture.montantFacture}}</td>
+                                           <td>
+                                                <a  [routerLink]="['/home/detailfacture/', facture.idFacture]">Afficher les ligne de commande</a>
+                                               </td>
+                                           </tr>
+
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<app-footer></app-footer>

@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-12">
+    <div class="text-right my-2 pr-1">
+      <i
+        (click)="toogleAddStock()"
+        style="font-size: 2rem; cursor: pointer; color: #4bb543"
+        class="fas fa-plus-circle mx-auto"
+      ></i>
+    </div>
+  </div>
+  <div class="col-12">
+    <app-add-stock
+      *ngIf="addstockStatus"
+      (addStockStatus)="toogleStatus()"
+      (addedStock)="addStockToList($event)"
+    ></app-add-stock>
+    <app-update-stock (updated)="getStockList($event)" (updateStockStatus)="CloseUpdate()" [selectedStock]="stockToUpdate" *ngIf="updateStockStatus"></app-update-stock>
+  </div>
+  <div
+    *ngFor="let item of my_Stock; let i = index"
+    class="col-12 col-sm-6 col-md-4"
+  >
+    <div
+      [style.backgroundColor]="item.qte >= item.qteMin ? '' : '#dc3545'"
+      class="card"
+    >
+      <div
+        [class]="item.qte >= item.qteMin ? 'card-body' : 'card-body stockRp'"
+      >
+        <h5 style="font-weight: bold">{{ item.libelleStock | uppercase }}</h5>
+        <div class="text-right" style="margin-top: -1.7rem">
+          <i
+            (click)="toogleUpdateStock(item)"
+            class="fas fa-pen-square"
+            style="font-size: 1.6rem; cursor: pointer"
+          ></i>
+          <i
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            class="fas fa-trash-alt ml-2"
+            style="font-size: 1.5rem; cursor: pointer"
+            (click)="getStockID(item.idStock)"
+          ></i>
+        </div>
+        <p *ngIf="item.qteMin >= item.qte" class="card-text">
+          votre stock en <span class="fontWeight">rupture</span> la quantité
+          minimale est <span class="fontWeight">{{ item.qteMin }}</span> mais
+          vous avez <span class="fontWeight">{{ item.qte }}</span> produit en
+          stock.
+        </p>
+        <p *ngIf="item.qteMin < item.qte" class="card-text">
+          votre avez <span class="fontWeight">{{ item.qte }}</span> produit en
+          stock et votre quantité minimale est
+          <span class="fontWeight">{{ item.qteMin }}</span>
+        </p>
+        <button
+          [disabled]="item.produitList.length <= 0"
+          style="color: white"
+          id="productListButton"
+          class="btn btn-dark"
+          [routerLink]="['/back/stock/detailstock', item.idStock]"
+        >
+          Afficher les produit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Gestion Stock</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Etes vous sur de vouloir supprimer ce stock?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Anuuler
+        </button>
+        <button
+          type="button"
+          (click)="delete()"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+        >
+          Confirmer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.card{
+  min-height: 13rem;
+}
+#productListButton
+{
+  position: absolute !important;
+  bottom: 1.7rem !important;
+}
+.fontWeight
+{
+  font-weight: 700;
+}
+.stockRp{
+  color: white;
+}

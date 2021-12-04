@@ -1,0 +1,230 @@
+<div class="row">
+  <div class="col-12">
+    <div class="text-right my-2 pr-1">
+      <i
+        (click)="toogleAddProduct()"
+        style="font-size: 2rem; cursor: pointer; color: #4bb543"
+        class="fas fa-plus-circle mx-auto"
+      ></i>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <app-addproduct
+      *ngIf="addProductStatus"
+      (addProductStatus)="toogleStatus()"
+      (addedProduct)="addProductToList($event)"
+    ></app-addproduct>
+    <app-update-product (updated)="getProductList($event)" (updateProductStatus)="CloseUpdate()" [selectedProduct]="productToUpdate" *ngIf="updateProductStatus"></app-update-product>
+  </div>
+
+
+
+
+<!--  .card {
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: 210px 210px 80px;
+  grid-template-areas: "image" "text" "stats";
+  border-radius: 18px;
+  background: white;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+  font-family: roboto;
+  text-align: center;
+}
+
+
+.card-image {
+  grid-area: image;
+}
+.card-text {
+  grid-area: text;
+}
+.card-stats {
+  grid-area: stats; 
+}
+
+
+
+.card-image {
+  grid-area: image;
+  background: url("img1.jpg");
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-size: cover;
+}
+
+
+.card-text {
+  grid-area: text;
+  margin: 25px;
+}
+.card-text .date {
+  color: rgb(255, 7, 110);
+  font-size:13px;
+}
+.card-text p {
+  color: grey;
+  font-size:15px;
+  font-weight: 300;
+}
+.card-text h2 {
+  margin-top:0px;
+  font-size:28px;
+}
+
+
+.card-stats {
+  grid-area: stats; 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: rgb(255, 7, 110);
+}
+
+.card-stats .stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  padding:10px;
+}
+
+.card:hover {
+  transform: scale(1.15);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+}
+.card {
+  transition: 0.5s ease;
+  cursor: pointer;
+  margin:30px;
+}
+  </style> -->
+
+<!--   <div class="card">
+    <div class="card-image"></div>
+    <div class="card-text">
+      <span class="date">4 days ago</span>
+      <h2>Post One</h2>
+      <p>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p>
+    </div>
+    <div class="card-stats">
+      <div class="stat">
+        <div class="value">4<sup>m</sup></div>
+        <div class="type">read</div>
+      </div>
+      <div class="stat border">
+        <div class="value">5123</div>
+        <div class="type">views</div>
+      </div>
+      <div class="stat">
+        <div class="value">32</div>
+        <div class="type">comments</div>
+      </div>
+    </div>
+  </div>
+ -->
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+
+.card:hover {
+  transform: scale(1.15);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+}
+.card {
+  transition: 0.5s ease;
+  cursor: pointer;
+  margin:30px;
+}
+</style>
+
+
+
+
+
+
+ <div class="col-lg-2 col-md-6 col-sm-6 card" *ngFor="let p of ListProduct; let i=index">
+  
+   <img src="../../../../assets/images/a2.jpg" class="card-img-top" alt="...">
+   <div class="card-body">
+ 
+    <h5 class="card-title">{{p.idProduit}}</h5>
+     <h5 class="card-title">{{p.libelle}}</h5>
+     <h5 class="card-title">{{p.code}}</h5>
+     <p class="card-text">{{p.prixUnitaire}}</p>
+   <div class="text-right" style="margin-top: -1.7rem">
+
+    <i
+    (click)="toogleUpdateProduct(p)" 
+    (click)="salut(p)" 
+    class="fas fa-pen-square"
+    style="font-size: 1.6rem; cursor: pointer"
+  ></i>
+
+    <i
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+      class="fas fa-trash-alt ml-2"
+      style="font-size: 1.5rem; cursor: pointer"
+      (click)="getProductID(p.idProduit)"
+    ></i>
+  </div>
+   </div>
+ </div>
+ 
+</div> 
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Gestion produit</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Etes vous sur de vouloir supprimer ce produit?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Annuler
+        </button>
+        <button
+          type="button"
+          (click)="delete()"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+        >
+          Confirmer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

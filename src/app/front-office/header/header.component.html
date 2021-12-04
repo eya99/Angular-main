@@ -1,0 +1,116 @@
+<!-- <!--headder-->
+<div class="header-outs" id="home">
+  <div class="header-bar">
+    <div class="info-top-grid">
+      <div class="info-contact-agile">
+        <ul>
+          <li>
+            <span class="fas fa-phone-volume"></span>
+            <p>+(000)123 4565 32</p>
+          </li>
+          <li>
+            <span class="fas fa-envelope"></span>
+            <p><a href="mailto:info@example.com">info@example1.com</a></p>
+          </li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="hedder-up row">
+        <div class="col-lg-3 col-md-3 logo-head">
+          <h1><a class="navbar-brand" href="index.html">Toys-Shop</a></h1>
+        </div>
+        <div class="col-lg-5 col-md-6 search-right">
+          <form class="form-inline my-lg-0" nsubmit="return false;" method="GET">
+            <input
+           
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+            />
+
+            <button   class="btn" type="submit">Search</button>
+          </form>
+        </div>
+        <div class="col-lg-4 col-md-3 right-side-cart">
+          <div class="cart-icons">
+            <ul>
+              <li>
+                <span class="far fa-heart"></span>
+              </li>
+              <li>
+                <a [routerLink]="['/home/signin']"
+                  ><span class="far fa-user"></span
+                ></a>
+              </li>
+              <li class="nav-item mr-4">
+                <app-cart-status></app-cart-status>
+              </li> 
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse justify-content-center"
+        id="navbarSupportedContent"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link"   [routerLink]="['/home']"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="shop.html" class="nav-link">Shop Now</a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="['/home/product']"
+              id="navbarDropdown1"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Product
+            </a>
+        
+            <!--  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="nav-link">Kids Toys</a>
+                    <a class="nav-link">Dolls</a>
+                    <a class="nav-link">Key Toys</a>
+                    <a class="nav-link">Boys Toys</a>
+                 </div> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"
+            [routerLink]="['/home/factures']" class="nav-link">factures</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<div class="inner_page-banner one-img"></div>
+<app-end-nav></app-end-nav>
+<!--//headder-->
+

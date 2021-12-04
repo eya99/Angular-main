@@ -1,0 +1,60 @@
+<app-header></app-header>
+<div class="content-wrap">
+
+    <div class="container clearfix">
+
+        <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register">
+            <div class="tab-container">
+                <div class="tab-content clearfix" id="tab-register">
+                    <div class="panel panel-default nobottommargin">
+                        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Rechercher">
+
+                        <div class="panel-body">
+                            <h1>ligne(s) de commande(s)</h1>
+                            <h5>Tout annulation de ligne de commande doit etre faite avant 24h</h5>
+                            <table class="table table-hover" border="1" style="width:100% ;" >
+                                <tr>
+                                    
+                                   
+                                   
+                                    <th>prix Total</th>
+                                    <th> Quantité</th>
+                                    <th>libelle</th>
+                                    <th>Modifier </th>
+                                    <th style="width: 200px">Annuler</th>
+                                </tr>
+
+                                
+                                    <tr   *ngFor="let commande of listfacture | filter:searchText">
+                                      
+                                        <td>{{ commande.prixTotal }}</td>
+                                        <td>{{ commande.qte }}</td>
+                                        
+                                        <td>{{ commande.produit.libelle }}</td>
+
+                                        <td>
+
+                                            <a href="">Modifier</a>
+
+
+                                        </td>
+                                    
+                                        <td>
+
+                                            <a href="">Annuler</a>
+
+
+                                        </td>
+
+                                    </tr>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

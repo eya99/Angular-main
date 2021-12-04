@@ -1,0 +1,163 @@
+
+
+
+
+      <div class="search-hotel" style="margin-left: 3rem;">
+         <h3 class="agileits-sear-head">Chercher par libelle..</h3>
+         
+            <input type="search" [(ngModel)]="libelle" #it="ngModel" placeholder="Product libelle..." name="search" required="">         
+            <i class="fas fa-search"  style="margin-left: 1rem;" (click)="getProductBylibelle(libelle)"></i>
+      </div>
+ <!-- price range -->
+ <div class="range" style="margin-top: 3rem;" >
+   <h3 class="agileits-sear-head" style="margin-left: 2rem;font-weight: bold;">Prix unitaire:</h3>
+   <div style="margin: 1.5rem;">
+      <div style="margin-right: 1.5rem;">{{prix}}</div> 
+      </div>
+   <ul class="dropdown-menu6">
+     <li>
+<div>
+        
+   <div>Min: {{minValue}}<input type="range" [(ngModel)]="prix" [value]="prix" #it1="ngModel" name="price" [min]="minValue" [max]="maxValue">
+   </div>
+   <div style="text-align:right;">
+      Max: {{maxValue}}
+      </div>
+      </div>
+         <i class="fas fa-search"  style="margin-left: 20rem;" (click)="getproduitsByprix(prix)"></i>
+
+     </li>
+   </ul>
+ </div>
+ <!-- //price range -->
+     <!--preference -->
+<style>
+
+
+</style>
+
+
+     <div class="left-side" style="margin-top: 3rem;margin-left: 3rem;">
+      <h3 class="agileits-sear-head" style="font-weight: bold;">Catégorie:</h3>
+     <select name="category" id="category" style="background-color:sandybrown; color:whitesmoke;width: 300px;"[(ngModel)]="categorie">
+      <option value="Electromenager" selected>Electromenager</option>
+      <option value="Alimentaire">Alimentaire</option>
+      <option value="Quincaillerie">Quincaillerie</option>
+  
+    </select>
+
+    <i class="fas fa-search"  style="text-align:end;" (click)="getproduitsBycat(categorie)"></i>
+
+    </div>
+
+
+
+
+
+    <!--  <div class="left-side">
+        <h3 class="agileits-sear-head">Catégorie</h3>
+        <ul>
+           <li>
+              <input type="checkbox" class="checked" value="Electromenager"  (change)="toggleEditable($event)">
+              <span class="span">Electromenager</span>
+           </li>
+           <li>
+              <input type="checkbox" class="checked"  (change)="toggleEditable($event)">
+              <span class="span">Alimentaire</span>
+           </li>
+           <li>
+              <input type="checkbox" class="checked"  (change)="toggleEditable($event)">
+              <span class="span">Quincaillerie</span>
+           </li>
+          
+        </ul>
+     </div> -->
+     <!-- // preference -->
+     <!-- discounts -->
+  <!--   <div class="left-side">
+        <h3 class="agileits-sear-head">Discount</h3>
+        <ul>
+           <li>
+              <input type="checkbox" class="checked">
+              <span class="span">5% or More</span>
+           </li>
+           <li>
+              <input type="checkbox" class="checked">
+              <span class="span">10% or More</span>
+           </li>
+           <li>
+              <input type="checkbox" class="checked">
+              <span class="span">20% or More</span>
+           </li>
+           <li>
+              <input type="checkbox" class="checked">
+              <span class="span">30% or More</span>
+           </li>
+           <li>
+              <input type="checkbox" class="checked">
+              <span class="span">50% or More</span>
+           </li>
+           <li>
+              <input type="checkbox" class="checked">
+              <span class="span">60% or More</span>
+           </li>
+        </ul>
+     </div> -->
+
+     <div class="customer-rev left-side" style="margin-top: 3rem;margin-left: 3rem;">
+        <h3 class="agileits-sear-head">Customer Review</h3>
+        <ul>
+           <li>
+              <a href="#">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <span>5.0</span>
+              </a>
+           </li>
+           <li>
+              <a href="#">
+              <i class="fas fa-star" ></i>
+              <i class="fas fa-star" ></i>
+              <i class="fas fa-star" ></i>
+              <i class="fas fa-star" ></i>
+              <i class="far fa-star"></i>
+              <span>4.0</span>
+              </a>
+           </li>
+           <li>
+              <a href="#">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half"></i>
+              <i class="far fa-star"></i>
+              <span>3.5</span>
+              </a>
+           </li>
+           <li>
+              <a href="#">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <span>3.0</span>
+              </a>
+           </li>
+           <li>
+              <a href="#">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <span>2.5</span>
+              </a>
+           </li>
+        </ul>
+     </div>
+
+     <button type="button" >Filtrer</button>

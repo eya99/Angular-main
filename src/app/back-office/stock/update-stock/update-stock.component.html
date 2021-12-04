@@ -1,0 +1,132 @@
+<h3 style="margin-top: -20px" class="ml-2">Modifier Stock</h3>
+<form [formGroup]="stock" (submit)="updateStock()">
+  <div class="col-md-12">
+    <label for="inputId" class="form-label">Id</label>
+    <input
+      formControlName="idStock"
+      type="number"
+      name="idStock"
+      class="form-control"
+      id="inputId"
+      readonly
+      [ngClass]="{
+        'is-invalid':
+          stock.get('idStock').touched && stock.get('idStock').invalid
+      }"
+    />
+  </div>
+  <div
+    class="invalid-feedback"
+    *ngIf="stock.get('idStock').touched && stock.get('idStock').invalid"
+  >
+    <p *ngIf="stock.get('idStock').errors.required">id est oblogatoire</p>
+  </div>
+
+  <div class="col-md-12">
+    <label for="inputLibelle" class="form-label">Libelle stock</label>
+    <input
+      formControlName="libelleStock"
+      type="text"
+      name="libelleStock"
+      class="form-control"
+      id="inputLibelle"
+      [ngClass]="{
+        'is-invalid':
+          stock.get('libelleStock').touched && stock.get('libelleStock').invalid
+      }"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        stock.get('libelleStock').touched && stock.get('libelleStock').invalid
+      "
+    >
+      <p *ngIf="stock.get('libelleStock').errors.required">
+        Libelle stock est obligatoire
+      </p>
+      <p *ngIf="stock.get('libelleStock').errors.pattern">
+        Libelle stock accepte seulement des caractéres
+      </p>
+      <p *ngIf="stock.get('libelleStock').errors.minlength">
+        la longueur minimale est
+        {{ stock.get("libelleStock").errors.minlength.requiredLength }}
+        characters
+      </p>
+
+      <p *ngIf="stock.get('libelleStock').errors.maxlength">
+        la longueur maximale est
+        {{ stock.get("libelleStock").errors.maxlength.requiredLength }}
+        characters
+      </p>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <label for="inputQteMin" class="form-label">Qauntité minimale</label>
+    <input
+      formControlName="qteMin"
+      type="number"
+      name="qteMin"
+      class="form-control"
+      id="inputQteMin"
+      [ngClass]="{
+        'is-invalid': stock.get('qteMin').touched && stock.get('qteMin').invalid
+      }"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="stock.get('qteMin').touched && stock.get('qteMin').invalid"
+    >
+      <p *ngIf="stock.get('qteMin').errors.required">
+        Qauntite minimale est obligatoire
+      </p>
+      <p *ngIf="stock.get('qteMin').errors.pattern">
+        Quantité minimale accepte seulement des nombres
+      </p>
+    </div>
+  </div>
+  <div class="col-md-12 my-2">
+    <button
+      [disabled]="stock.invalid"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+    >
+      Modifier stock
+    </button>
+    <button (click)="discardUpdate()" class="btn btn-dark ml-3">Annuler</button>
+  </div>
+</form>
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Gestion Stock</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">stock modifié avec success</div>
+      <div class="modal-footer">
+        <button
+          (click)="stockUpdated()"
+          type="button"
+          class="btn btn-success"
+          data-bs-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

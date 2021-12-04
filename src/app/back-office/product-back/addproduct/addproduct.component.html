@@ -1,0 +1,303 @@
+<link rel="stylesheet" href="addproduct.component.css" />
+
+
+<h3  style="margin-top: -20px" class="ml-2" >Ajouter produit</h3>
+<form [formGroup]="Product" (submit)="addProduct()">
+    <div class="col-md-12">
+      <label for="inputId" class="form-label">Id</label>
+      <input
+        formControlName="id"
+        type="number"
+        name="id"
+        class="form-control"
+        id="inputId"
+        readonly
+        [ngClass]="{
+          'is-invalid': Product.get('id').touched && Product.get('id').invalid
+        }"
+      />
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="Product.get('id').touched && Product.get('id').invalid"
+    >
+      <p *ngIf="Product.get('id').errors.required">id est oblogatoire</p>
+    </div>
+  
+    <div class="col-md-12">
+      <label for="inputcode" class="form-label">Code du produit</label>
+      <input
+        formControlName="code"
+        type="text"
+        name="code"
+        class="form-control"
+        id="inputCode"
+        [ngClass]="{
+          'is-invalid':
+            Product.get('code').touched && Product.get('code').invalid
+        }"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          Product.get('code').touched && Product.get('code').invalid
+        "
+      >
+        <p *ngIf="Product.get('code').errors.required">
+          code Produit est obligatoire
+        </p>
+        <p *ngIf="Product.get('code').errors.pattern">
+          code Produit accepte seulement des caractéres
+        </p>
+        <p *ngIf="Product.get('code').errors.minlength">
+          la longueur minimale est
+          {{ Product.get("code").errors.minlength.requiredLength }}
+          characters
+        </p>
+  
+        <p *ngIf="Product.get('code').errors.maxlength">
+          la longueur maximale est
+          {{ Product.get("code").errors.maxlength.requiredLength }}
+          characters
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <label for="inputlibelle" class="form-label">libelle du produit</label>
+      <input
+        formControlName="libelle"
+        type="text"
+        name="libelle"
+        class="form-control"
+        id="inputlibelle"
+        [ngClass]="{
+          'is-invalid':
+            Product.get('libelle').touched && Product.get('libelle').invalid
+        }"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          Product.get('libelle').touched && Product.get('libelle').invalid
+        "
+      >
+        <p *ngIf="Product.get('libelle').errors.required">
+          libelle Produit est obligatoire
+        </p>
+        <p *ngIf="Product.get('libelle').errors.pattern">
+          code Produit accepte seulement des caractéres
+        </p>
+        <p *ngIf="Product.get('libelle').errors.minlength">
+          la longueur minimale est
+          {{ Product.get("libelle").errors.minlength.requiredLength }}
+          characters
+        </p>
+  
+        <p *ngIf="Product.get('libelle').errors.maxlength">
+          la longueur maximale est
+          {{ Product.get("libelle").errors.maxlength.requiredLength }}
+          characters
+        </p>
+      </div>
+    </div>
+
+
+
+
+    <div class="col-md-12">
+      <label for="inputprixUnitaire" class="form-label">prixUnitaire du produit</label>
+      <input
+        formControlName="prixUnitaire"
+        type="number"
+        name="prixUnitaire"
+        class="form-control"
+        id="inputprixUnitaire"
+        [ngClass]="{
+          'is-invalid': Product.get('prixUnitaire').touched && Product.get('prixUnitaire').invalid
+        }"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="Product.get('prixUnitaire').touched && Product.get('prixUnitaire').invalid"
+      >
+        <p *ngIf="Product.get('prixUnitaire').errors.required">
+          prixUnitaire est obligatoire
+        </p>
+        <p *ngIf="Product.get('prixUnitaire').errors.pattern">
+          prixUnitaire accepte seulement des nombres
+        </p>
+      </div>
+    </div>
+
+    <label for="pet-select mr-4" style="margin-left: 1.5rem;">Catégorie produit:</label>
+
+    <select name="category" id="category"   formControlName="category">
+        <option value="">Electromenager</option>
+        <option value="Alimentaire">Alimentaire</option>
+        <option value="Quicaillerie">Quicaillerie</option>
+    
+    </select>
+
+ <!--   <select name="stock" id="stock" formControlName="stock">
+       <option *ngFor="let s of ListStock;let i=index" value="s.libelleStock"  (click)="sa(i)" (click)="getId(i)">{{s.libelleStock}}</option>
+    </select>  -->
+
+
+
+
+<style>
+.final__dropdown{
+  position: relative;
+  z-index: 10;
+  display: inline-block;
+}
+  .final__dropdown__hover{
+    display: inline-block;
+    padding: 10px;
+    background-color:chocolate;
+    color: #ffffff;
+    border:0 solid #323b40;
+    cursor: pointer;
+  }
+  .final__dropdown__hover:hover{background-color:burlywood;}
+  .final__dropdown__menu{
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    min-width: 150px;
+    background-color: #ffffff;
+    color: #323b40;
+    box-shadow: 0 3px 2px rgba(0,0,0,0.3);
+  }
+  .final__dropdown:hover .final__dropdown__menu{display: block;}
+    .final__dropdown__menu a{
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      border-width: 0;
+      border-top: 1px solid #e0e0e0;
+    }
+    .final__dropdown__menu a:hover{
+      background-color:#f0f0f0;
+      color: #323b40;
+    }
+
+.final-result{
+  justify-content:flex-end;
+}
+
+
+</style>
+
+<br>
+<br>
+<div class="final-result" style="display:inline-flex;margin-bottom: 1.5rem;">
+
+    <section >
+
+      <label for="pet-select" style="margin-left: 1.5rem;">Stock du produit</label>>
+      <div class="final__dropdown">
+        <button class="final__dropdown__hover">Stock</button>
+        <div class="final__dropdown__menu">
+          <button type="button" style="width:150px;color:beige;background-color: chocolate;display: flex;"    *ngFor="let s of ListStock;let i=index" value="s.libelleStock"  (click)="sa(i)" (click)="getId(s.idStock)">{{s.libelleStock}}</button>
+        </div>
+      </div>
+
+    </section>
+
+
+
+
+    <section>
+
+      <label for="pet-select" style="margin-left: 1.5rem;">Rayon du produit</label>>
+      <div class="final__dropdown">
+        <button class="final__dropdown__hover">Rayon</button>
+        <div class="final__dropdown__menu">
+          <button type="button" style="width:150px;color:beige;background-color: chocolate;display: flex;"    *ngFor="let s of ListStock;let i=index" value="s.libelleStock"  (click)="sa(i)" (click)="getId(s.idStock)">{{s.libelleStock}}</button>>
+         
+        </div>
+      </div>
+
+    </section>
+</div>
+
+
+
+
+
+
+
+ <!-- <div *ngFor="let s of ListStock">
+  <button value="" name="s.libelleStock" (click)="getId(s.idStock)">{{s.libelleStock}}</button>
+</div>
+ -->
+
+
+
+<!-- <div class="container row">
+  <div class="col-md-12">
+      <h1>Upload Image</h1>
+  </div>
+</div>
+
+
+<div class="container row">
+  <div class="col-md-6">
+      <input type="file" (change)="onFileChanged($event)">
+
+  </div>
+  <div class="col-md-6">
+      <input type="button" (click)="onUpload()" value="upload">
+  </div>
+</div>
+
+<hr />
+<div class="container row">
+    <div class="col-md-12">
+        <div *ngIf=message>{{message}}</div>
+    </div>
+</div>
+
+<div class="container row">
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
+            name="name" />
+    </div>
+
+</div>
+
+<div class="container row">
+    <div class="col-md-12">
+        <div *ngIf=retrievedImage>
+            <img [src]="retrievedImage">
+        </div>
+    </div>
+</div>
+ -->
+ <div class="col-md-12 my-2">
+  <button type="submit" [disabled]="Product.invalid"   data-bs-toggle="modal" data-bs-target="#staticBackdrop"  class="btn btn-primary">Ajouter produit</button>
+  <button (click)="discardAdd()" class="btn btn-dark ml-3">Annuler</button>
+    </div>
+  </form>
+
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Gestion Produit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         Produit ajouté avec success
+        </div>
+        <div class="modal-footer">
+          <button  type="button"  (click)="productAdded()" (click)="discardAdd()" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+   

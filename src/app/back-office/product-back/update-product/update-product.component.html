@@ -1,0 +1,237 @@
+<h3 style="margin-top: -20px" class="ml-2">Modifier produit</h3>
+<form [formGroup]="Product" (submit)="updateProduct()">
+    <div class="col-md-12">
+      <label for="inputId" class="form-label">Id</label>
+      <input
+        formControlName="id"
+        type="number"
+        name="id"
+        class="form-control"
+        id="inputId"
+        readonly
+        [ngClass]="{
+          'is-invalid': Product.get('id').touched && Product.get('id').invalid
+        }"
+      />
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="Product.get('id').touched && Product.get('id').invalid"
+    >
+      <p *ngIf="Product.get('id').errors.required">id est oblogatoire</p>
+    </div>
+  
+    <div class="col-md-12">
+      <label for="inputcode" class="form-label">Code du produit</label>
+      <input
+        formControlName="code"
+        type="text"
+        name="code"
+        class="form-control"
+        id="inputCode"
+        [ngClass]="{
+          'is-invalid':
+            Product.get('code').touched && Product.get('code').invalid
+        }"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          Product.get('code').touched && Product.get('code').invalid
+        "
+      >
+        <p *ngIf="Product.get('code').errors.required">
+          code Produit est obligatoire
+        </p>
+        <p *ngIf="Product.get('code').errors.pattern">
+          code Produit accepte seulement des caractéres
+        </p>
+        <p *ngIf="Product.get('code').errors.minlength">
+          la longueur minimale est
+          {{ Product.get("code").errors.minlength.requiredLength }}
+          characters
+        </p>
+  
+        <p *ngIf="Product.get('code').errors.maxlength">
+          la longueur maximale est
+          {{ Product.get("code").errors.maxlength.requiredLength }}
+          characters
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <label for="inputlibelle" class="form-label">libelle du produit</label>
+      <input
+        formControlName="libelle"
+        type="text"
+        name="libelle"
+        class="form-control"
+        id="inputlibelle"
+        [ngClass]="{
+          'is-invalid':
+            Product.get('libelle').touched && Product.get('libelle').invalid
+        }"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          Product.get('libelle').touched && Product.get('libelle').invalid
+        "
+      >
+        <p *ngIf="Product.get('libelle').errors.required">
+          libelle Produit est obligatoire
+        </p>
+        <p *ngIf="Product.get('libelle').errors.pattern">
+          code Produit accepte seulement des caractéres
+        </p>
+        <p *ngIf="Product.get('libelle').errors.minlength">
+          la longueur minimale est
+          {{ Product.get("libelle").errors.minlength.requiredLength }}
+          characters
+        </p>
+  
+        <p *ngIf="Product.get('libelle').errors.maxlength">
+          la longueur maximale est
+          {{ Product.get("libelle").errors.maxlength.requiredLength }}
+          characters
+        </p>
+      </div>
+    </div>
+
+
+
+
+    <div class="col-md-12">
+      <label for="inputprixUnitaire" class="form-label">prixUnitaire du produit</label>
+      <input
+        formControlName="prixUnitaire"
+        type="number"
+        name="prixUnitaire"
+        class="form-control"
+        id="inputprixUnitaire"
+        [ngClass]="{
+          'is-invalid': Product.get('prixUnitaire').touched && Product.get('prixUnitaire').invalid
+        }"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="Product.get('prixUnitaire').touched && Product.get('prixUnitaire').invalid"
+      >
+        <p *ngIf="Product.get('prixUnitaire').errors.required">
+          prixUnitaire est obligatoire
+        </p>
+        <p *ngIf="Product.get('prixUnitaire').errors.pattern">
+          prixUnitaire accepte seulement des nombres
+        </p>
+      </div>
+    </div>
+
+    <label for="pet-select">Catégorie produit:</label>
+
+    <select name="category" id="category"   formControlName="category">
+        <option value="Electromenager">Electromenager</option>
+        <option value="Alimentaire">Alimentaire</option>
+        <option value="Quincaillerie">Quincaillerie</option>
+    
+    </select>
+
+    <label for="pet-select">Stock produit:</label>
+  <!--   <select name="stock" id="stock" formControlName="stock">
+      <option *ngFor="let s of ListStock"  ><button value="s.libelleStock" (click)="getId(s.idStock)">{{s.libelleStock}}</button></option>
+    </select> -->
+ <div *ngFor="let s of ListStock">
+  <button value="" name="s.libelleStock" (click)="getId(s.idStock)">{{s.libelleStock}}</button>
+</div>
+
+<!-- <div class="container row">
+  <div class="col-md-12">
+      <h1>Upload Image</h1>
+  </div>
+</div>
+
+
+<div class="container row">
+  <div class="col-md-6">
+      <input type="file" (change)="onFileChanged($event)">
+
+  </div>
+  <div class="col-md-6">
+      <input type="button" (click)="onUpload()" value="upload">
+  </div>
+</div>
+
+<hr />
+<div class="container row">
+    <div class="col-md-12">
+        <div *ngIf=message>{{message}}</div>
+    </div>
+</div>
+
+<div class="container row">
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
+            name="name" />
+    </div>
+
+</div>
+
+<div class="container row">
+    <div class="col-md-12">
+        <div *ngIf=retrievedImage>
+            <img [src]="retrievedImage">
+        </div>
+    </div>
+</div>
+ -->
+ <div class="col-md-12 my-2">
+    <button
+    type="submit"
+    [disabled]="Product.invalid"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#staticBackdrop"
+  >
+    Modifier produit
+  </button>
+      <button (click)="discardUpdate()" class="btn btn-dark ml-3">Annuler</button>
+    </div>
+  </form>
+
+
+  <div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Gestion produit</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Produit modifié avec succés</div>
+      <div class="modal-footer">
+        <button
+          (click)="ProductUpdated()"
+          (click)="discardUpdate()"
+          type="button"
+          class="btn btn-success"
+          data-bs-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+   
